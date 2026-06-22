@@ -54,17 +54,33 @@ function App() {
   };
 
   return (
-    <div>
-      <SearchForm onSearchSubmit={handleSearch} />
-      {loading && <p>Loading...</p>}
-      {error && <p>{error}</p>}
-      {facilityData && <p>Found: {facilityData.provider_name}</p>}
-      {facilityData && (
-        <>
-          <ManualInputs data={manualData} onChange={setManualData} />
-          <ReportPreview facilityData={facilityData} manualData={manualData} />
-        </>
-      )}
+    <div className="min-h-screen bg-gray-100 py-10 px-4">
+      <div className="max-w-4xl mx-auto">
+        <div className="bg-white rounded-xl shadow-md p-8 mb-6">
+          <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">
+            Facility Assessment Report Generator
+          </h1>
+          <SearchForm onSearchSubmit={handleSearch} />
+          {loading && (
+            <p className="text-center text-gray-500 mt-4">Loading...</p>
+          )}
+          {error && (
+            <p className="text-center text-red-500 mt-4">{error}</p>
+          )}
+        </div>
+
+        {facilityData && (
+          <div className="bg-white rounded-xl shadow-md p-8 mb-6">
+            <ManualInputs data={manualData} onChange={setManualData} />
+          </div>
+        )}
+
+        {facilityData && (
+          <div className="bg-white rounded-xl shadow-md p-8 mb-6">
+            <ReportPreview facilityData={facilityData} manualData={manualData} />
+          </div>
+        )}
+      </div>
     </div>
   );
 }
