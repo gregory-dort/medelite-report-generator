@@ -3,10 +3,11 @@ import axios from 'axios';
 import SearchForm from './components/SearchForm';
 import ManualInputs from './components/ManualInputs';
 import type { ManualInputData } from './components/ManualInputs';
+import ReportPreview from './components/ReportPreview';
 import './App.css'
 
 export interface FacilityData {
-  cms_certification_number_cnn: string;
+  cms_certification_number_ccn: string;
   provider_name: string;
   location: string;
   state: string;
@@ -59,7 +60,10 @@ function App() {
       {error && <p>{error}</p>}
       {facilityData && <p>Found: {facilityData.provider_name}</p>}
       {facilityData && (
-        <ManualInputs data={manualData} onChange={setManualData} />
+        <>
+          <ManualInputs data={manualData} onChange={setManualData} />
+          <ReportPreview facilityData={facilityData} manualData={manualData} />
+        </>
       )}
     </div>
   );

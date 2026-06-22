@@ -58,6 +58,7 @@ const ManualInputs: React.FC<ManualInputsProps> = ({ data, onChange }) => {
 
             <label>Previous Coverage from Medelite</label>
             <select
+                title="Previous Coverage from Medelite"
                 value={data.previousCoverage}
                 onChange={(e) => handleChange('previousCoverage', e.target.value)}
             >
