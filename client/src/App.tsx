@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import axios from 'axios';
 import SearchForm from './components/SearchForm';
+import ManualInputs from './components/ManualInputs';
+import type { ManualInputData } from './components/ManualInputs';
 import './App.css'
 
 export interface FacilityData {
@@ -20,6 +22,16 @@ function App() {
   const [facilityData, setFacilityData] = useState<FacilityData | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  const [manualData, setManualData] = useState<ManualInputData>({
+    facilityNameOverride: '',
+    emr: '',
+    currentCensus: '',
+    patientType: '',
+    previousCoverage: '',
+    previousPerformance: '',
+    medicalCoverage: ''
+  });
 
   const handleSearch = async (ccn: string) => {
     setLoading(true);
@@ -46,6 +58,9 @@ function App() {
       {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
       {facilityData && <p>Found: {facilityData.provider_name}</p>}
+      {facilityData && (
+        <ManualInputs data={manualData} onChange={setManualData} />
+      )}
     </div>
   );
 }
