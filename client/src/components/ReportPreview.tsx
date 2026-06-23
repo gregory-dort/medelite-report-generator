@@ -110,7 +110,7 @@ const ReportPreview: React.FC<ReportPreviewProps> = ({ facilityData, manualData 
 
     return (
         <div>
-            <div className="flex justify-center mb-2">
+            <div className="flex justify-center gap-2 shadow-md mb-2">
                 <button 
                 onClick={handleDownloadPdf}
                 className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition"
