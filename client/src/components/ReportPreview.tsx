@@ -35,13 +35,13 @@ const ReportPreview: React.FC<ReportPreviewProps> = ({ facilityData, manualData 
         const createRow = (label: string, value: string) => new TableRow({
           children: [
             new TableCell({
-                width: { size: 45, type: WidthType.PERCENTAGE },
+                width: { size: 4500, type: WidthType.DXA },
                 children: [new Paragraph({
                     children: [new TextRun({ text: label, bold: true })],
                 })],
             }),
             new TableCell({
-                width: { size: 55, type: WidthType.PERCENTAGE },
+                width: { size: 4500, type: WidthType.DXA },
                 children: [new Paragraph({ text: value })],
             }),
           ], 
@@ -51,22 +51,32 @@ const ReportPreview: React.FC<ReportPreviewProps> = ({ facilityData, manualData 
             sections: [{
                 children: [
                     new Paragraph({
-                        text: 'INFINITE - Managed by MEDELITE',
-                        heading: HeadingLevel.HEADING_1,
                         alignment: AlignmentType.CENTER,
+                        children: [new TextRun({
+                            text: 'INFINITE - Managed by MEDELITE',
+                            bold: true,
+                            size: 32,
+                        })]
                     }),
                     new Paragraph({
-                        text: 'FACILITY ASSESSMENT SNAPSHOT',
-                        heading: HeadingLevel.HEADING_2,
                         alignment: AlignmentType.CENTER,
+                        children: [new TextRun({
+                            text: 'FACILITY ASSESSMENT SNAPSHOT',
+                            bold: true,
+                            size: 24,
+                        })]
                     }),
                     new Paragraph({
-                        text: facilityData.state,
                         alignment: AlignmentType.CENTER,
+                        children: [new TextRun({
+                            text: facilityData.state,
+                            bold: true,
+                            size: 24,
+                        })]
                     }),
                     new Paragraph({ text: '' }),
                     new Table({
-                        width: { size: 100, type: WidthType.PERCENTAGE },
+                        width: { size: 9000, type: WidthType.DXA },
                         rows: [
                             createRow('Name of Facility', facilityName),
                             createRow('Location', facilityData.location),
