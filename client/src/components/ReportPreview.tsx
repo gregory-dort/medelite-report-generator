@@ -116,7 +116,7 @@ const ReportPreview: React.FC<ReportPreviewProps> = ({ facilityData, manualData 
                 maxWidth: '800px',
                 margin: '0 auto',
             }}>
-                <div style={{ textAlign: 'center', marginBottom: '20px' }}>
+                <div style={{ textAlign: 'center', marginBottom: '20px', backgroundColor: '#D3D3D3' }}>
                     <h1 style={{ fontSize: '24px', fontWeight: 'bold' }}>
                         INFINITE - Managed by MEDELITE
                     </h1>
