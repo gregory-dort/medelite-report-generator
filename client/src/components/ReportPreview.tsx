@@ -37,7 +37,14 @@ const ReportPreview: React.FC<ReportPreviewProps> = ({ facilityData, manualData 
 
     return (
         <div>
-            <button onClick={handleDownload}>Download PDF</button>
+            <div className="flex justify-center mb-2">
+                <button 
+                onClick={handleDownload}
+                className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition"
+                >
+                    Download PDF
+                </button>
+            </div>
             <div ref={reportRef} style={{
                 fontFamily: 'Arial, sans-serif',
                 padding: '20px',
@@ -119,6 +126,7 @@ const ReportPreview: React.FC<ReportPreviewProps> = ({ facilityData, manualData 
                                     href={`https://www.medicare.gov/care-compare/details/nursing-home/${facilityData.cms_certification_number_ccn}`}
                                     target="_blank"
                                     rel="noopener noreferrer"
+                                    style={{ color: '#1a56db', textDecoration: 'underline' }}
                                 >
                                     View on Medicare Care Compare
                                 </a>
@@ -133,17 +141,22 @@ const ReportPreview: React.FC<ReportPreviewProps> = ({ facilityData, manualData 
 
 const labelCell: React.CSSProperties = {
     fontWeight: 'bold',
-    padding: '8px 12 px',
+    padding: '10px 16 px',
+    paddingLeft: '16px',
     border: '1px solid #000',
-    width: '50%',
-    verticalAlign: 'top',
+    width: '45%',
+    verticalAlign: 'middle',
+    lineHeight: '1.5',
+    wordBreak: 'break-word',
 };
 
 const valueCell: React.CSSProperties = {
-    padding: '8px 12px',
+    padding: '10px 16px',
     border: '1px solid #000',
-    width: '50%',
-    verticalAlign: 'top',
+    width: '55%',
+    verticalAlign: 'middle',
+    lineHeight: '1.5',
+    wordBreak: 'break-word',
 };
 
 export default ReportPreview;

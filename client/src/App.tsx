@@ -56,7 +56,7 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-100 py-10 px-4">
       <div className="max-w-4xl mx-auto">
-        <div className="bg-white rounded-xl shadow-md p-8 mb-6">
+        <div className="bg-white rounded-xl shadow-md p-8 mb-4">
           <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">
             Facility Assessment Report Generator
           </h1>
@@ -68,6 +68,12 @@ function App() {
             <p className="text-center text-red-500 mt-4">{error}</p>
           )}
         </div>
+
+        {facilityData && (
+          <p className="text-center text-green-600 font-medium mt-4 mb-2">
+            ✓ Found: {facilityData.provider_name}
+          </p>
+        )}
 
         {facilityData && (
           <div className="bg-white rounded-xl shadow-md p-8 mb-6">
