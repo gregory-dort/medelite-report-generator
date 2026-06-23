@@ -110,95 +110,97 @@ const ReportPreview: React.FC<ReportPreviewProps> = ({ facilityData, manualData 
 
     return (
         <div>
-            <div ref={reportRef} style={{
-                fontFamily: 'Arial, sans-serif',
-                padding: '20px',
-                maxWidth: '800px',
-                margin: '0 auto',
-            }}>
-                <div style={{ textAlign: 'center', marginBottom: '20px', backgroundColor: '#D3D3D3' }}>
-                    <h1 style={{ fontSize: '24px', fontWeight: 'bold' }}>
-                        INFINITE - Managed by MEDELITE
-                    </h1>
-                    <h2 style={{ fontSize: '18px', fontWeight: 'bold' }}>
-                        FACILITY ASSESSMENT SNAPSHOT
-                    </h2>
-                    <h3>{facilityData.state}</h3>
-                </div>
-
-                <table style={{
-                    width: '100%',
-                    borderCollapse: 'collapse',
-                    fontSize: '14px',
+            <div className="bg-gray-200 shadow-sm p-4 mb-2">
+                <div ref={reportRef} style={{
+                    fontFamily: 'Arial, sans-serif',
+                    padding: '20px',
+                    maxWidth: '800px',
+                    margin: '0 auto',
                 }}>
-                    <tbody>
-                        <tr>
-                            <td style={labelCell}>Name of Facility</td>
-                            <td style={valueCell}>{facilityName}</td>
-                        </tr>
-                        <tr>
-                            <td style={labelCell}>Location</td>
-                            <td style={valueCell}>{facilityData.location}</td>
-                        </tr>
-                        <tr>
-                            <td style={labelCell}>EMR</td>
-                            <td style={valueCell}>{manualData.emr}</td>
-                        </tr>
-                        <tr>
-                            <td style={labelCell}>Census Capacity</td>
-                            <td style={valueCell}>{facilityData.number_of_certified_beds}</td>
-                        </tr>
-                        <tr>
-                            <td style={labelCell}>Current Census</td>
-                            <td style={valueCell}>{manualData.currentCensus}</td>
-                        </tr>
-                        <tr>
-                            <td style={labelCell}>Type of Patient</td>
-                            <td style={valueCell}>{manualData.patientType}</td>
-                        </tr>
-                        <tr>
-                            <td style={labelCell}>Previous Coverage from Medelite</td>
-                            <td style={valueCell}>{manualData.previousCoverage}</td>
-                        </tr>
-                        <tr>
-                            <td style={labelCell}>Previous Provider Performance from Medelite</td>
-                            <td style={valueCell}>{manualData.previousPerformance}</td>
-                        </tr>
-                        <tr>
-                            <td style={labelCell}>Medical Coverage</td>
-                            <td style={valueCell}>{manualData.medicalCoverage}</td>
-                        </tr>
-                        <tr>
-                            <td style={labelCell}>Overall Star Rating</td>
-                            <td style={valueCell}>{renderStars(facilityData.overall_rating)}</td>
-                        </tr>
-                         <tr>
-                            <td style={labelCell}>Health Inspection</td>
-                            <td style={valueCell}>{renderStars(facilityData.health_inspection_rating)}</td>
-                        </tr>
-                         <tr>
-                            <td style={labelCell}>Staffing</td>
-                            <td style={valueCell}>{renderStars(facilityData.staffing_rating)}</td>
-                        </tr>
-                         <tr>
-                            <td style={labelCell}>Quality of Resident Care</td>
-                            <td style={valueCell}>{renderStars(facilityData.qm_rating)}</td>
-                        </tr>
-                         <tr>
-                            <td style={labelCell}>Medicare Source</td>
-                            <td style={valueCell}>
-                                <a
-                                    href={`https://www.medicare.gov/care-compare/details/nursing-home/${facilityData.cms_certification_number_ccn}`}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    style={{ color: '#1a56db', textDecoration: 'underline' }}
-                                >
-                                    View on Medicare Care Compare
-                                </a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                    <div style={{ textAlign: 'center', marginBottom: '20px' }}>
+                        <h1 style={{ fontSize: '24px', fontWeight: 'bold' }}>
+                            INFINITE - Managed by MEDELITE
+                        </h1>
+                        <h2 style={{ fontSize: '18px', fontWeight: 'bold' }}>
+                            FACILITY ASSESSMENT SNAPSHOT
+                        </h2>
+                        <h3>{facilityData.state}</h3>
+                    </div>
+
+                    <table style={{
+                        width: '100%',
+                        borderCollapse: 'collapse',
+                        fontSize: '14px',
+                    }}>
+                        <tbody>
+                            <tr>
+                                <td style={labelCell}>Name of Facility</td>
+                                <td style={valueCell}>{facilityName}</td>
+                            </tr>
+                            <tr>
+                                <td style={labelCell}>Location</td>
+                                <td style={valueCell}>{facilityData.location}</td>
+                            </tr>
+                            <tr>
+                                <td style={labelCell}>EMR</td>
+                                <td style={valueCell}>{manualData.emr}</td>
+                            </tr>
+                            <tr>
+                                <td style={labelCell}>Census Capacity</td>
+                                <td style={valueCell}>{facilityData.number_of_certified_beds}</td>
+                            </tr>
+                            <tr>
+                                <td style={labelCell}>Current Census</td>
+                                <td style={valueCell}>{manualData.currentCensus}</td>
+                            </tr>
+                            <tr>
+                                <td style={labelCell}>Type of Patient</td>
+                                <td style={valueCell}>{manualData.patientType}</td>
+                            </tr>
+                            <tr>
+                                <td style={labelCell}>Previous Coverage from Medelite</td>
+                                <td style={valueCell}>{manualData.previousCoverage}</td>
+                            </tr>
+                            <tr>
+                                <td style={labelCell}>Previous Provider Performance from Medelite</td>
+                                <td style={valueCell}>{manualData.previousPerformance}</td>
+                            </tr>
+                            <tr>
+                                <td style={labelCell}>Medical Coverage</td>
+                                <td style={valueCell}>{manualData.medicalCoverage}</td>
+                            </tr>
+                            <tr>
+                                <td style={labelCell}>Overall Star Rating</td>
+                                <td style={valueCell}>{renderStars(facilityData.overall_rating)}</td>
+                            </tr>
+                            <tr>
+                                <td style={labelCell}>Health Inspection</td>
+                                <td style={valueCell}>{renderStars(facilityData.health_inspection_rating)}</td>
+                            </tr>
+                            <tr>
+                                <td style={labelCell}>Staffing</td>
+                                <td style={valueCell}>{renderStars(facilityData.staffing_rating)}</td>
+                            </tr>
+                            <tr>
+                                <td style={labelCell}>Quality of Resident Care</td>
+                                <td style={valueCell}>{renderStars(facilityData.qm_rating)}</td>
+                            </tr>
+                            <tr>
+                                <td style={labelCell}>Medicare Source</td>
+                                <td style={valueCell}>
+                                    <a
+                                        href={`https://www.medicare.gov/care-compare/details/nursing-home/${facilityData.cms_certification_number_ccn}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        style={{ color: '#1a56db', textDecoration: 'underline' }}
+                                    >
+                                        View on Medicare Care Compare
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <div className="flex justify-center gap-2 mb-2 px-4 py-4">
                 <button 
