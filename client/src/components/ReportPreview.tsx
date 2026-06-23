@@ -1,6 +1,8 @@
 import React, { useRef } from 'react';
 import type { FacilityData } from '../App';
 import type { ManualInputData } from './ManualInputs';
+import { Document, Packer, Paragraph, Table, TableRow, TableCell, TextRun, WidthType, AlignmentType, HeadingLevel } from 'docx';
+import { saveAs } from 'file-saver';
 
 interface ReportPreviewProps {
     facilityData: FacilityData;
@@ -14,7 +16,7 @@ const ReportPreview: React.FC<ReportPreviewProps> = ({ facilityData, manualData 
 
     const facilityName = manualData.facilityNameOverride || facilityData.provider_name;
 
-    const handleDownload = async () => {
+    const handleDownloadPdf = async () => {
         const html2pdf = (await import('html2pdf.js')).default;
         const element = reportRef.current;
         if (!element) return;
@@ -29,6 +31,67 @@ const ReportPreview: React.FC<ReportPreviewProps> = ({ facilityData, manualData 
         html2pdf().set(options).from(element).save();
     };
 
+    const handleDownloadDocx = async () => {
+        const createRow = (label: string, value: string) => new TableRow({
+          children: [
+            new TableCell({
+                width: { size: 45, type: WidthType.PERCENTAGE },
+                children: [new Paragraph({
+                    children: [new TextRun({ text: label, bold: true })],
+                })],
+            }),
+            new TableCell({
+                width: { size: 55, type: WidthType.PERCENTAGE },
+                children: [new Paragraph({ text: value })],
+            }),
+          ], 
+        });
+
+        const doc = new Document({
+            sections: [{
+                children: [
+                    new Paragraph({
+                        text: 'INFINITE - Managed by MEDELITE',
+                        heading: HeadingLevel.HEADING_1,
+                        alignment: AlignmentType.CENTER,
+                    }),
+                    new Paragraph({
+                        text: 'FACILITY ASSESSMENT SNAPSHOT',
+                        heading: HeadingLevel.HEADING_2,
+                        alignment: AlignmentType.CENTER,
+                    }),
+                    new Paragraph({
+                        text: facilityData.state,
+                        alignment: AlignmentType.CENTER,
+                    }),
+                    new Paragraph({ text: '' }),
+                    new Table({
+                        width: { size: 100, type: WidthType.PERCENTAGE },
+                        rows: [
+                            createRow('Name of Facility', facilityName),
+                            createRow('Location', facilityData.location),
+                            createRow('EMR', manualData.emr),
+                            createRow('Census Capacity', facilityData.number_of_certified_beds),
+                            createRow('Current Census', manualData.currentCensus),
+                            createRow('Type of Patient', manualData.patientType),
+                            createRow('Previous Coverage from Medelite', manualData.previousCoverage),
+                            createRow('Previous Provider Performance from Medelite', manualData.previousPerformance),
+                            createRow('Medical Coverage', manualData.medicalCoverage),
+                            createRow('Overall Star Rating', facilityData.overall_rating + ' / 5'),
+                            createRow('Health Inspection', facilityData.health_inspection_rating + ' / 5'),
+                            createRow('Staffing', facilityData.staffing_rating + ' / 5'),
+                            createRow('Quality of Resident Care', facilityData.qm_rating + ' / 5'),
+                            createRow('Medicare Source', `https://www.medicare.gov/care-compare/details/nursing-home/${facilityData.cms_certification_number_ccn}`),
+                        ],
+                    }),
+                ],
+            }],
+        });
+
+        const blob = await Packer.toBlob(doc);
+        saveAs(blob, `${facilityName}_Assessment.docx`);
+    }
+
     const renderStars = (rating: string) => {
         const num = parseInt(rating);
         if (isNaN(num)) return 'N/A';
@@ -39,10 +102,16 @@ const ReportPreview: React.FC<ReportPreviewProps> = ({ facilityData, manualData 
         <div>
             <div className="flex justify-center mb-2">
                 <button 
-                onClick={handleDownload}
+                onClick={handleDownloadPdf}
                 className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition"
                 >
                     Download PDF
+                </button>
+                <button
+                    onClick={handleDownloadDocx}
+                    className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition"
+                >
+                    Download Word Doc
                 </button>
             </div>
             <div ref={reportRef} style={{
