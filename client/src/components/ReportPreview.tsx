@@ -110,20 +110,6 @@ const ReportPreview: React.FC<ReportPreviewProps> = ({ facilityData, manualData 
 
     return (
         <div>
-            <div className="flex justify-center gap-2 mb-2 px-4 py-4">
-                <button 
-                onClick={handleDownloadPdf}
-                className="bg-green-600 text-white px-6 py-2 rounded-lg shadow-md hover:bg-green-700 transition"
-                >
-                    Download PDF
-                </button>
-                <button
-                    onClick={handleDownloadDocx}
-                    className="bg-blue-600 text-white px-6 py-2 rounded-lg shadow-md hover:bg-blue-700 transition"
-                >
-                    Download Word Doc
-                </button>
-            </div>
             <div ref={reportRef} style={{
                 fontFamily: 'Arial, sans-serif',
                 padding: '20px',
@@ -213,6 +199,20 @@ const ReportPreview: React.FC<ReportPreviewProps> = ({ facilityData, manualData 
                         </tr>
                     </tbody>
                 </table>
+            </div>
+            <div className="flex justify-center gap-2 mb-2 px-4 py-4">
+                <button 
+                onClick={handleDownloadPdf}
+                className="bg-green-600 text-white px-6 py-2 rounded-lg shadow-md hover:bg-green-700 transition"
+                >
+                    Download PDF
+                </button>
+                <button
+                    onClick={handleDownloadDocx}
+                    className="bg-blue-600 text-white px-6 py-2 rounded-lg shadow-md hover:bg-blue-700 transition"
+                >
+                    Download Word Doc
+                </button>
             </div>
         </div>
     );
