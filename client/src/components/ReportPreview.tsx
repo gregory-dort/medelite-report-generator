@@ -109,7 +109,7 @@ const ReportPreview: React.FC<ReportPreviewProps> = ({ facilityData, manualData 
     };
 
     return (
-        <div className="bg-gray-200">
+        <div>
             <div className="bg-white shadow-sm p-4 mb-2">
                 <div ref={reportRef} style={{
                     fontFamily: 'Arial, sans-serif',
