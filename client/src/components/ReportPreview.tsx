@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import type { FacilityData } from '../App';
 import type { ManualInputData } from './ManualInputs';
-import { Document, Packer, Paragraph, Table, TableRow, TableCell, TextRun, WidthType, AlignmentType, HeadingLevel } from 'docx';
+import { Document, Packer, Paragraph, Table, TableRow, TableCell, TextRun, WidthType, AlignmentType } from 'docx';
 import { saveAs } from 'file-saver';
 
 interface ReportPreviewProps {

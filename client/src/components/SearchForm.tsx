@@ -25,7 +25,7 @@ const SearchForm: React.FC<SearchFormProps> = ({ onSearchSubmit }) => {
                     type="text"
                     placeholder="Enter CCN here (e.g., 135708)"
                     {...register('query', {
-                        required: 'CCn is required',
+                        required: 'CCN is required',
                         pattern: {
                             value: /^\d{6}$/,
                             message: 'CCN must be a 6-digit number'
