@@ -113,13 +113,13 @@ const ReportPreview: React.FC<ReportPreviewProps> = ({ facilityData, manualData 
             <div className="bg-gray-200 flex justify-center gap-2 shadow-md mb-2 px-4 py-4">
                 <button 
                 onClick={handleDownloadPdf}
-                className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition mb-2"
+                className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition"
                 >
                     Download PDF
                 </button>
                 <button
                     onClick={handleDownloadDocx}
-                    className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition mb-2"
+                    className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition"
                 >
                     Download Word Doc
                 </button>
