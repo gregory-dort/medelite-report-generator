@@ -133,7 +133,6 @@ const ReportPreview: React.FC<ReportPreviewProps> = ({ facilityData, manualData 
                 children: [new TextRun({
                 text: renderStars(rating),
                 font: 'Arial Unicode MS',
-                color: 'FFB900',
                 })],
             })],
             }),
