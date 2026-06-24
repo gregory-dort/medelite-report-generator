@@ -35,13 +35,15 @@ const ReportPreview: React.FC<ReportPreviewProps> = ({ facilityData, manualData 
         const createRow = (label: string, value: string) => new TableRow({
           children: [
             new TableCell({
-                width: { size: 4500, type: WidthType.DXA },
+                width: { size: 4680, type: WidthType.DXA },
+                margins: { top: 80, bottom: 80, left: 120, right: 120 },
                 children: [new Paragraph({
                     children: [new TextRun({ text: label, bold: true })],
                 })],
             }),
             new TableCell({
-                width: { size: 4500, type: WidthType.DXA },
+                width: { size: 4680, type: WidthType.DXA },
+                margins: { top: 80, bottom: 80, left: 120, right: 120 },
                 children: [new Paragraph({ text: value })],
             }),
           ], 
@@ -49,6 +51,12 @@ const ReportPreview: React.FC<ReportPreviewProps> = ({ facilityData, manualData 
 
         const doc = new Document({
             sections: [{
+                properties: {
+                    page: {
+                        size: { width: 12240, height: 15840 },
+                        margin: { top: 1440, right: 1440, bottom: 1440, left: 1440 },
+                    },
+                },
                 children: [
                     new Paragraph({
                         alignment: AlignmentType.CENTER,
@@ -76,7 +84,8 @@ const ReportPreview: React.FC<ReportPreviewProps> = ({ facilityData, manualData 
                     }),
                     new Paragraph({ text: '' }),
                     new Table({
-                        width: { size: 9000, type: WidthType.DXA },
+                        width: { size: 9360, type: WidthType.DXA },
+                        columnWidths: [4680, 4680],
                         rows: [
                             createRow('Name of Facility', facilityName),
                             createRow('Location', facilityData.location),
