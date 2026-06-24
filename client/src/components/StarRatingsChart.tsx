@@ -1,6 +1,6 @@
 import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Cell, ResponsiveContainer } from 'recharts';
-import { FacilityData } from '../App';
+import type { FacilityData } from '../App';
 
 interface StarRatingsChartProps {
     facilityData: FacilityData;
