@@ -22,7 +22,7 @@ const StarRatingsChart: React.FC<StarRatingsChartProps> = ({ facilityData }) => 
 
   return (
     <div className="mt-6">
-      <h3 className="text-lg font-semibold text-gray-700 mb-4">Star Ratings Overview</h3>
+      <h3 className="text-lg font-semibold text-center text-gray-700 mb-4">Star Ratings Overview</h3>
       <ResponsiveContainer width="100%" height={300}>
         <BarChart data={data} margin={{ top: 10, right: 30, left: 0, bottom: 10 }}>
           <CartesianGrid strokeDasharray="3 3" />

@@ -82,13 +82,15 @@ function App() {
             <ManualInputs data={manualData} onChange={setManualData} />
           </div>
         )}
-
-        {facilityData && (
+        
+        <div className="bg-white rounded-xl shadow-md p-8 mb-4">
+          {facilityData && (
           <div className="bg-white rounded-xl shadow-md p-8 mb-6">
             <ManualInputs data={manualData} onChange={setManualData} />
             <StarRatingsChart facilityData={facilityData} />
           </div>
         )}
+        </div>
 
         {facilityData && (
           <div className="bg-white rounded-xl shadow-md p-8 mb-6">
