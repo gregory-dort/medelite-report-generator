@@ -96,10 +96,10 @@ const ReportPreview: React.FC<ReportPreviewProps> = ({ facilityData, manualData 
                             createRow('Previous Coverage from Medelite', manualData.previousCoverage),
                             createRow('Previous Provider Performance from Medelite', manualData.previousPerformance),
                             createRow('Medical Coverage', manualData.medicalCoverage),
-                            createRow('Overall Star Rating', facilityData.overall_rating + ' / 5'),
-                            createRow('Health Inspection', facilityData.health_inspection_rating + ' / 5'),
-                            createRow('Staffing', facilityData.staffing_rating + ' / 5'),
-                            createRow('Quality of Resident Care', facilityData.qm_rating + ' / 5'),
+                            createStarRow('Overall Star Rating', facilityData.overall_rating),
+                            createStarRow('Health Inspection', facilityData.health_inspection_rating),
+                            createStarRow('Staffing', facilityData.staffing_rating),
+                            createStarRow('Quality of Resident Care', facilityData.qm_rating),
                             createRow('Medicare Source', `https://www.medicare.gov/care-compare/details/nursing-home/${facilityData.cms_certification_number_ccn}`),
                         ],
                     }),
@@ -116,6 +116,29 @@ const ReportPreview: React.FC<ReportPreviewProps> = ({ facilityData, manualData 
         if (isNaN(num)) return 'N/A';
         return '★'.repeat(num) + '☆'.repeat(5 - num);
     };
+
+    const createStarRow = (label: string, rating: string) => new TableRow({
+        children: [
+            new TableCell({
+            width: { size: 4680, type: WidthType.DXA },
+            margins: { top: 80, bottom: 80, left: 120, right: 120 },
+            children: [new Paragraph({
+                children: [new TextRun({ text: label, bold: true })],
+            })],
+            }),
+            new TableCell({
+            width: { size: 4680, type: WidthType.DXA },
+            margins: { top: 80, bottom: 80, left: 120, right: 120 },
+            children: [new Paragraph({
+                children: [new TextRun({
+                text: renderStars(rating),
+                font: 'Arial Unicode MS',
+                color: 'FFB900',
+                })],
+            })],
+            }),
+        ],
+    });
 
     return (
         <div>
