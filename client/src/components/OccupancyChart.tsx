@@ -42,7 +42,7 @@ const OccupancyChart: React.FC<OccupancyChartProps> = ({ facilityData }) => {
 
     return (
         <div className="mt-6">
-            <h3 className="text-lg font-semibold text-gray-700 mb-4">Occupancy Rate</h3>
+            <h3 className="text-lg font-semibold text-center text-gray-700 mb-4">Occupancy Rate</h3>
             <div className="flex items-center justify-around">
 
                 <ResponsiveContainer width="50%" height={250}>
