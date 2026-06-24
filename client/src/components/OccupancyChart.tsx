@@ -6,6 +6,19 @@ interface OccupancyChartProps {
     facilityData: FacilityData;
 }
 
+const CustomTooltip = ({ active, payload }: any) => {
+        if (active && payload && payload.length) {
+            const value = payload[0]?.value;
+            if (!value) return null;
+            return (
+            <div className="bg-white border border-gray-200 rounded-lg px-3 py-2 shadow text-sm">
+                <p className="font-semibold">{value}% Occupancy Rate</p>
+            </div>
+            );
+        }
+        return null;
+    };
+
 const OccupancyChart: React.FC<OccupancyChartProps> = ({ facilityData }) => {
     const capacity = parseInt(facilityData.number_of_certified_beds) || 0;
     const current = parseFloat(facilityData.average_number_of_residents_per_day) || 0;
@@ -41,7 +54,7 @@ const OccupancyChart: React.FC<OccupancyChartProps> = ({ facilityData }) => {
                         endAngle={90 - (occupancyRate / 100) * 360}
                     >
                         <RadialBar dataKey="value" cornerRadius={8} background={{ fill: '#e5e7eb' }} />
-                        <Tooltip formatter={(value) => [`${value}%`, 'Occupancy Rate']} />
+                        <Tooltip content={<CustomTooltip />} />
                     </RadialBarChart>
                 </ResponsiveContainer>
 
