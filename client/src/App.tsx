@@ -5,7 +5,7 @@ import ManualInputs from './components/ManualInputs';
 import type { ManualInputData } from './components/ManualInputs';
 import ReportPreview from './components/ReportPreview';
 import StarRatingsChart from './components/StarRatingsChart';
-
+import OccupancyChart from './components/OccupancyChart';
 import './App.css'
 
 export interface FacilityData {
@@ -86,6 +86,7 @@ function App() {
         {facilityData && (
           <div className="bg-white rounded-xl shadow-md p-8 mb-6">
             <StarRatingsChart facilityData={facilityData} />
+            <OccupancyChart facilityData={facilityData} />
           </div>
         )}
 
