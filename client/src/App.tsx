@@ -85,7 +85,6 @@ function App() {
 
         {facilityData && (
           <div className="bg-white rounded-xl shadow-md p-8 mb-6">
-            <ManualInputs data={manualData} onChange={setManualData} />
             <StarRatingsChart facilityData={facilityData} />
           </div>
         )}
