@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 
 export interface ManualInputData {
     facilityNameOverride: string;
@@ -17,6 +18,8 @@ interface ManualInputsProps {
 }
 
 const ManualInputs: React.FC<ManualInputsProps> = ({ data, onChange, certifiedBeds }) => {
+    const [censusError, setCensusError] = useState<string>('');
+
     const handleChange = (field: keyof ManualInputData, value: string) => {
         onChange({ ...data, [field]: value });
     };
@@ -56,11 +59,19 @@ const ManualInputs: React.FC<ManualInputsProps> = ({ data, onChange, certifiedBe
                         onChange={(e) => {
                             const capacity = parseInt(certifiedBeds) || 0;
                             const value = parseInt(e.target.value);
-                            if (value > capacity) return;
+                            if (value > capacity) {
+                                setCensusError(`Census cannot exceed capacity of ${certifiedBeds} beds`);
+                                return;
+                            }
+                            setCensusError('');
                             handleChange('currentCensus', e.target.value)}}
                         placeholder="e.g. 112"
                         className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
+                    {censusError && (
+                        <p className="text-xs text-red-500 mt-1">{censusError}</p>
+                    )}
+                    <p className="text-xs text-gray-400">Max capacity: {certifiedBeds} beds</p>
                 </div>
 
                 <div className="flex flex-col gap-1">
