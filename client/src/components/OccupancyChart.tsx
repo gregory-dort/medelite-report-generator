@@ -1,9 +1,12 @@
 import React from 'react';
 import { RadialBarChart, RadialBar, ResponsiveContainer, Tooltip } from 'recharts';
 import type { FacilityData } from '../App';
+import type { ManualInputData } from './ManualInputs';
 
 interface OccupancyChartProps {
     facilityData: FacilityData;
+    manualData: ManualInputData;
+
 }
 
 const CustomTooltip = ({ active, payload }: any) => {
@@ -19,9 +22,11 @@ const CustomTooltip = ({ active, payload }: any) => {
         return null;
     };
 
-const OccupancyChart: React.FC<OccupancyChartProps> = ({ facilityData }) => {
+const OccupancyChart: React.FC<OccupancyChartProps> = ({ facilityData, manualData }) => {
     const capacity = parseInt(facilityData.number_of_certified_beds) || 0;
-    const current = parseFloat(facilityData.average_number_of_residents_per_day) || 0;
+    const current = manualData.currentCensus
+    ? parseFloat(manualData.currentCensus)
+    : parseFloat(facilityData.average_number_of_residents_per_day) || 0;
     const occupancyRate = capacity > 0 ? Math.round((current / capacity) * 100) : 0;
 
     const getColor = (rate: number) => {

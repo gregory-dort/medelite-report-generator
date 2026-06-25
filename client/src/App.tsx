@@ -88,7 +88,7 @@ function App() {
         {facilityData && (
           <div className="bg-white rounded-xl shadow-md p-8 mb-6">
             <StarRatingsChart facilityData={facilityData} />
-            <OccupancyChart facilityData={facilityData} />
+            <OccupancyChart facilityData={facilityData} manualData={manualData} />
           </div>
         )}
 
