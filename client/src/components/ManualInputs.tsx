@@ -13,9 +13,10 @@ export interface ManualInputData {
 interface ManualInputsProps {
     data: ManualInputData;
     onChange: (data: ManualInputData) => void;
+    certifiedBeds: string;
 }
 
-const ManualInputs: React.FC<ManualInputsProps> = ({ data, onChange }) => {
+const ManualInputs: React.FC<ManualInputsProps> = ({ data, onChange, certifiedBeds }) => {
     const handleChange = (field: keyof ManualInputData, value: string) => {
         onChange({ ...data, [field]: value });
     };
@@ -52,7 +53,11 @@ const ManualInputs: React.FC<ManualInputsProps> = ({ data, onChange }) => {
                     <input
                         type="number"
                         value={data.currentCensus}
-                        onChange={(e) => handleChange('currentCensus', e.target.value)}
+                        onChange={(e) => {
+                            const capacity = parseInt(certifiedBeds) || 0;
+                            const value = parseInt(e.target.value);
+                            if (value > capacity) return;
+                            handleChange('currentCensus', e.target.value)}}
                         placeholder="e.g. 112"
                         className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />

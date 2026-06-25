@@ -81,7 +81,7 @@ function App() {
 
         {facilityData && (
           <div className="bg-white rounded-xl shadow-md p-8 mb-6">
-            <ManualInputs data={manualData} onChange={setManualData} />
+            <ManualInputs data={manualData} onChange={setManualData} certifiedBeds={facilityData.number_of_certified_beds} />
           </div>
         )}
 
