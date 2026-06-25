@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import axios from 'axios';
+import Header from './components/Header'
 import SearchForm from './components/SearchForm';
 import ManualInputs from './components/ManualInputs';
 import type { ManualInputData } from './components/ManualInputs';
@@ -58,6 +59,7 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-100 py-10 px-4">
       <div className="max-w-4xl mx-auto">
+        <Header state={facilityData?.state} />
         <div className="bg-white rounded-xl shadow-md p-8 mb-4">
           <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">
             Facility Assessment Report Generator
